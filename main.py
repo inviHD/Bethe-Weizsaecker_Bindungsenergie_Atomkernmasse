@@ -27,7 +27,7 @@ def bethe_weizsacker(Z, A):
 
 def mass_defect(B):
     c = 299792458  # Lichtgeschwindigkeit in m/s
-    delta_m = ((B * e * 10*(6)) / c*2) / u
+    delta_m = ((B * e * 10**(6)) / (c**2)) / u
     return delta_m
 
 def nuclear_mass(Z, A, delta_m):
@@ -39,7 +39,7 @@ def nuclear_mass(Z, A, delta_m):
 
 def read_isotopes():
     isotopes = []
-    with open("data/isotope.csv") as f:
+    with open("data/Nuklide.csv") as f:
         first_line = f.readline()
         reader = f.readlines()
         for row in reader:
@@ -71,10 +71,7 @@ def read_elements():
 
 def find_element(symbol, elements):
     symbol = symbol.lower()
-    print(symbol)
     for element in elements:
-        print(element)
-        print(element[2].lower())
         if element[2].lower() == symbol:
             return element
     return None
@@ -103,10 +100,10 @@ def save_file(A: int, Z: int, delta, delta_m, B, term1, term2, term3, term4, ter
         f.write("Programm zur Berechnung der Bindungsenergie und Atomkernmasse\n")
         f.write("-------------------------------------------------------------\n")
         f.write(f"Elementname: {element[1]}\n")
-        f.write(f"Nuclide: {isotope[1]}\n")
-        f.write(f"Protonenzahl (Z): {isotope[2]}\n")
-        f.write(f"Neutronenzahl: {isotope[3]}\n")
-        f.write(f"Massenzahl (A): {isotope[4]}\n")
+        f.write(f"Nuclide: {isotope[0]}\n")
+        f.write(f"Protonenzahl (Z): {isotope[1]}\n")
+        f.write(f"Neutronenzahl: {isotope[2]}\n")
+        f.write(f"Massenzahl (A): {isotope[3]}\n")
         f.write("-------------------------------------------------------------\n")
         f.write(f"Bindungsenergie: {B} MeV\n")
         f.write(f"Term1: {term1} MeV, Term2: -{term2} MeV, Term3: -{term3} MeV, Term4: -{term4} MeV, Term5: {term5} MeV\n")
@@ -155,10 +152,10 @@ while running:
         print("\nGefundenes Isotop:")
         print("-------------------------------------------------------------")
         print(f"Elementname: {element[1]}")
-        print(f"Nuclide: {isotope[1]}")
-        print(f"Protonenzahl (Z): {isotope[2]}")
-        print(f"Neutronenzahl: {isotope[3]}")
-        print(f"Massenzahl (A): {isotope[4]}")
+        print(f"Nuclide: {isotope[0]}")
+        print(f"Protonenzahl (Z): {isotope[1]}")
+        print(f"Neutronenzahl: {isotope[2]}")
+        print(f"Massenzahl (A): {isotope[3]}")
         print("-------------------------------------------------------------\n")
 
 
